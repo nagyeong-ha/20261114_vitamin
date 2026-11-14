@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10152f">
+  <title>오늘의 에너지, 기본부터 채우다 | 비타민 캠페인</title>
+  <style>
+    :root {
+      --navy:#10152f; --ink:#17203d; --muted:#66708c;
+      --lime:#d7ff4f; --cyan:#63e6e2; --pink:#ff6f91;
+      --paper:#f7f9f2; --white:#fff;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; font-family: Pretendard, "Noto Sans KR", "Malgun Gothic", sans-serif;
+      color:var(--ink); background:var(--paper); line-height:1.6;
+    }
+    a { color:inherit; }
+    .hero {
+      min-height:690px; position:relative; overflow:hidden; color:white;
+      padding:28px max(6vw,24px) 90px;
+      background:radial-gradient(circle at 82% 30%, #344b83 0, transparent 27%),
+                 radial-gradient(circle at 15% 90%, #263d5b 0, transparent 30%),
+                 linear-gradient(135deg,#10152f 0%,#171e45 58%,#222b54 100%);
+    }
+    .nav { max-width:1160px; margin:auto; display:flex; justify-content:space-between; align-items:center; }
+    .brand { font-weight:900; letter-spacing:.12em; font-size:14px; }
+    .brand span { color:var(--lime); }
+    .nav-tag { border:1px solid #ffffff55; border-radius:30px; padding:8px 15px; font-size:12px; color:#e5eaff; }
+    .hero-inner { max-width:1160px; margin:100px auto 0; position:relative; z-index:2; }
+    .eyebrow { color:var(--lime); font-size:13px; font-weight:800; letter-spacing:.2em; }
+    h1 { font-size:clamp(46px,7vw,88px); line-height:1.08; letter-spacing:-.065em; margin:22px 0; max-width:760px; }
+    h1 em { color:var(--lime); font-style:normal; }
+    .hero-copy { color:#d6dcf3; font-size:clamp(16px,2vw,20px); max-width:560px; margin:0 0 34px; }
+    .cta {
+      display:inline-flex; align-items:center; gap:12px; text-decoration:none;
+      background:var(--lime); color:#151b2d; padding:16px 24px; border-radius:999px;
+      font-weight:900; box-shadow:0 10px 35px #d7ff4f35; transition:.2s;
+    }
+    .cta:hover { transform:translateY(-3px); box-shadow:0 14px 38px #d7ff4f55; }
+    .orbit { position:absolute; width:410px; height:410px; right:8%; top:150px; border:1px solid #ffffff25; border-radius:50%; }
+    .orbit:before,.orbit:after { content:""; position:absolute; border:1px solid #ffffff20; border-radius:50%; inset:42px; }
+    .orbit:after { inset:90px; }
+    .vitamin { position:absolute; right:14%; top:240px; width:230px; height:300px; transform:rotate(25deg); }
+    .pill {
+      position:absolute; width:112px; height:245px; left:55px; top:20px;
+      border-radius:60px; background:linear-gradient(90deg,#b6e72f 0 48%,#f4ffb4 49% 100%);
+      box-shadow:25px 28px 60px #05091d88, inset -9px 0 16px #ffffff55;
+    }
+    .pill:before { content:""; position:absolute; left:0; right:0; top:49%; height:2px; background:#718d24aa; }
+    .spark { position:absolute; color:var(--lime); font-size:30px; animation:float 4s ease-in-out infinite; }
+    .s1 { right:2%; top:16%; } .s2 { left:0; top:52%; animation-delay:1s; } .s3 { right:18%; bottom:3%; animation-delay:2s; }
+    @keyframes float { 50% { transform:translateY(-15px) rotate(12deg); } }
+    .ticker { background:var(--lime); color:#1a2235; overflow:hidden; white-space:nowrap; padding:12px 0; font-weight:950; letter-spacing:.12em; }
+    .ticker div { display:inline-block; min-width:200%; animation:marquee 24s linear infinite; }
+    @keyframes marquee { to { transform:translateX(-50%); } }
+    main { max-width:1160px; margin:auto; padding:90px 24px; }
+    .intro { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:end; margin-bottom:58px; }
+    .kicker { color:#7a8a22; font-weight:900; font-size:12px; letter-spacing:.18em; }
+    h2 { font-size:clamp(32px,4.5vw,54px); line-height:1.18; letter-spacing:-.05em; margin:12px 0; }
+    .intro p { color:var(--muted); margin:0; max-width:500px; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { background:white; border-radius:24px; padding:28px; min-height:235px; box-shadow:0 12px 38px #1a24400b; border:1px solid #e9eddc; }
+    .card .num { color:#87933d; font-size:12px; font-weight:900; letter-spacing:.1em; }
+    .card h3 { font-size:23px; margin:15px 0 8px; letter-spacing:-.04em; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .card .symbol { font-size:28px; float:right; }
+    .banner {
+      margin:90px 0; padding:58px; border-radius:30px; color:white; overflow:hidden; position:relative;
+      background:linear-gradient(115deg,#202a54,#10152f);
+    }
+    .banner:after { content:"B"; position:absolute; right:30px; bottom:-125px; font-size:340px; line-height:1; font-weight:1000; color:#ffffff0b; }
+    .banner h2 { max-width:690px; position:relative; z-index:1; }
+    .banner h2 span { color:var(--lime); }
+    .banner p { color:#d2d8ee; max-width:600px; position:relative; z-index:1; }
+    .audience-title { margin-bottom:28px; }
+    .audiences { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .audience { border-radius:22px; padding:26px; background:#edf2df; }
+    .audience:nth-child(2) { background:#e4f5f1; }
+    .audience:nth-child(3) { background:#f8e9ee; }
+    .audience:nth-child(4) { background:#e9eafb; }
+    .audience small { font-weight:900; color:#6e7c34; letter-spacing:.1em; }
+    .audience h3 { font-size:clamp(21px,2.5vw,29px); line-height:1.3; margin:12px 0; letter-spacing:-.04em; }
+    .audience p { color:#626b7f; margin:0; font-size:14px; }
+    .closing { text-align:center; padding:82px 20px 88px; background:var(--lime); color:#17203d; }
+    .closing .eyebrow { color:#46561b; }
+    .closing h2 { font-size:clamp(38px,6vw,70px); margin:14px auto 20px; }
+    .closing p { max-width:600px; margin:0 auto 28px; color:#3d4922; }
+    .closing .cta { background:#17203d; color:white; box-shadow:none; }
+    footer { background:#10152f; color:#aeb6d0; padding:28px 24px; font-size:12px; }
+    footer .inner { max-width:1160px; margin:auto; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .disclaimer { max-width:780px; }
+    @media (max-width:760px) {
+      .hero { min-height:690px; padding-bottom:65px; }
+      .hero-inner { margin-top:80px; }
+      .orbit { width:260px; height:260px; right:-55px; top:370px; opacity:.8; }
+      .vitamin { transform:scale(.68) rotate(25deg); right:2%; top:390px; transform-origin:top right; }
+      .intro { grid-template-columns:1fr; gap:14px; }
+      .cards { grid-template-columns:1fr; }
+      .card { min-height:0; }
+      .banner { padding:34px 26px; margin:65px 0; }
+      .audiences { grid-template-columns:1fr; }
+      main { padding-top:68px; padding-bottom:68px; }
+      .nav-tag { font-size:10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { scroll-behavior:auto !important; animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand">VITA<span>+</span> DAILY</div>
+      <div class="nav-tag">매일의 건강 루틴 캠페인</div>
+    </nav>
+    <div class="hero-inner">
+      <div class="eyebrow">YOUR DAY. YOUR VITALITY.</div>
+      <h1>바쁜 하루에도<br><em>나를 위한 기본</em>은<br>챙기니까.</h1>
+      <p class="hero-copy">잘 먹고, 잘 쉬고, 필요한 영양을 균형 있게.<br>오늘의 나를 위한 작은 건강 루틴을 시작하세요.</p>
+      <a class="cta" href="#why">내 몸의 기본 알아보기 <span>↗</span></a>
+    </div>
+    <div class="orbit" aria-hidden="true"></div>
+    <div class="vitamin" aria-hidden="true"><div class="pill"></div></div>
+    <div class="spark s1" aria-hidden="true">✦</div><div class="spark s2" aria-hidden="true">✧</div><div class="spark s3" aria-hidden="true">✦</div>
+  </header>
+
+  <div class="ticker" aria-hidden="true"><div>
+    EVERYDAY ENERGY ✦ SMART NUTRITION ✦ SMALL HABITS, BIG DIFFERENCE ✦ EVERYDAY ENERGY ✦ SMART NUTRITION ✦ SMALL HABITS, BIG DIFFERENCE ✦
+    EVERYDAY ENERGY ✦ SMART NUTRITION ✦ SMALL HABITS, BIG DIFFERENCE ✦ EVERYDAY ENERGY ✦ SMART NUTRITION ✦ SMALL HABITS, BIG DIFFERENCE ✦
+  </div></div>
+
+  <main id="why">
+    <section class="intro">
+      <div>
+        <div class="kicker">WHY VITAMINS?</div>
+        <h2>티 나지 않아도,<br>매일 꼭 필요한 영양.</h2>
+      </div>
+      <p>비타민은 직접 에너지를 내는 영양소는 아니지만, 우리 몸의 정상적인 대사와 여러 생리 기능을 돕습니다. 식사를 기본으로 하고, 부족하기 쉬운 영양소는 내 식습관과 필요에 맞춰 살펴보세요.</p>
+    </section>
+
+    <section class="cards" aria-label="비타민의 주요 기능">
+      <article class="card">
+        <span class="symbol">⚡</span><div class="num">01 / B COMPLEX</div>
+        <h3>에너지 대사의 조력자</h3>
+        <p>비타민 B군은 탄수화물·단백질·지방의 에너지 대사 과정에 관여해 정상적인 신체 기능을 돕습니다.</p>
+      </article>
+      <article class="card">
+        <span class="symbol">✦</span><div class="num">02 / VITAMIN C · E</div>
+        <h3>세포를 지키는 항산화</h3>
+        <p>비타민 C와 E는 항산화 작용을 통해 유해산소로부터 세포를 보호하는 데 도움을 줍니다.</p>
+      </article>
+      <article class="card">
+        <span class="symbol">☀</span><div class="num">03 / VITAMIN D</div>
+        <h3>뼈와 정상적인 면역 기능</h3>
+        <p>비타민 D는 칼슘과 인의 흡수·이용 및 뼈의 형성·유지, 정상적인 면역 기능에 필요합니다.</p>
+      </article>
+    </section>
+
+    <section class="banner">
+      <div class="eyebrow">A LITTLE HABIT, EVERY DAY</div>
+      <h2>무리한 변화보다<br><span>꾸준히 챙기는 건강 습관.</span></h2>
+      <p>영양은 한 번에 채우는 이벤트가 아니라 매일 쌓아가는 루틴입니다. 균형 잡힌 식사와 충분한 휴식을 기본으로, 나에게 필요한 영양을 똑똑하게 확인하세요.</p>
+    </section>
+
+    <section>
+      <div class="audience-title">
+        <div class="kicker">FIND YOUR DAILY ROUTINE</div>
+        <h2>당신의 하루에 맞는<br>건강 메시지.</h2>
+      </div>
+      <div class="audiences">
+        <article class="audience">
+          <small>BUSY WORKER</small>
+          <h3>“커피 한 잔으로 끝내지 말고,<br>내 몸의 기본도 챙기기.”</h3>
+          <p>바쁜 일상일수록 식사와 휴식, 필요한 비타민 섭취까지 균형 있게 살펴보세요.</p>
+        </article>
+        <article class="audience">
+          <small>ONE-PERSON HOUSEHOLD</small>
+          <h3>“간편한 한 끼에도<br>영양의 균형은 놓치지 않게.”</h3>
+          <p>끼니가 불규칙하다면 먼저 식단을 점검하고, 부족한 영양소를 확인해 보세요.</p>
+        </article>
+        <article class="audience">
+          <small>ANTIOXIDANT CARE</small>
+          <h3>“오늘의 건강 루틴,<br>속부터 차근차근.”</h3>
+          <p>비타민 C와 E의 항산화 기능으로 정상적인 세포 보호에 필요한 영양을 챙겨보세요.</p>
+        </article>
+        <article class="audience">
+          <small>INDOOR LIFESTYLE</small>
+          <h3>“햇빛 볼 틈 없는 날에도<br>비타민 D는 체크하기.”</h3>
+          <p>실내 생활이 많다면 식사와 생활 습관을 돌아보고 비타민 D 섭취 상태를 살펴보세요.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="closing">
+    <div class="eyebrow">MAKE WELLNESS YOUR HABIT</div>
+    <h2>오늘의 나를 위한<br>좋은 선택, 지금부터.</h2>
+    <p>내 몸에 필요한 영양은 사람마다 다릅니다. 식품으로 균형 있게 섭취하고, 보충이 필요하다면 제품의 기능성·섭취량·주의사항을 확인하세요.</p>
+    <a class="cta" href="#why">비타민 루틴 시작하기 <span>↗</span></a>
+  </section>
+
+  <footer>
+    <div class="inner">
+      <div class="brand">VITA<span style="color:#d7ff4f">+</span> DAILY</div>
+      <div class="disclaimer">
+        본 페이지는 비타민의 일반적인 영양 정보를 소개하는 광고 시안입니다. 특정 제품의 질병 예방·치료 효과를 의미하지 않습니다.
+        건강기능식품을 선택할 때에는 제품별로 인정된 기능성, 1일 섭취량 및 주의사항을 확인하세요.
+        영양 보충은 균형 잡힌 식사를 대체하지 않으며, 개인의 건강 상태나 복용 중인 약에 따라 전문가와 상담이 필요할 수 있습니다.
+      </div>
+      <div>© 2026 VITA+ DAILY · CONCEPT PAGE</div>
+    </div>
+  </footer>
+</body>
+</html>
